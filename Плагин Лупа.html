@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .min img {
+        width: 400px;
+        height:400px;
+      }
+      .max  {
+        width: 200px;
+        height: 200px;
+        background-image: url("https://c.wallhere.com/photos/46/38/1920x1080_px_Commando_military_mountains_Snowy_Peak_Tom_Clancys_Tom_Clancys_Ghost_Recon_Tom_Clancys_Ghost_Recon_Wildlands-840272.jpg!d")
+      }
+      .min img:hover {
+        cursor: url('cursor.png'), pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="min">
+            <img src="https://c.wallhere.com/photos/46/38/1920x1080_px_Commando_military_mountains_Snowy_Peak_Tom_Clancys_Tom_Clancys_Ghost_Recon_Tom_Clancys_Ghost_Recon_Wildlands-840272.jpg!d" alt="">
+      </div>
+      <div class="max">  </div>
+    </div>
+    <script type="text/javascript">
+      window.onload = function() {
+  var imgMin = document.querySelector('.min');
+  var imgFull = document.querySelector('.max');
+  magnidier(imgMin, imgFull);
+};
+
+function magnidier(prew, out) {
+  prew.addEventListener('mousemove', function(event) {
+    var metrics = getMetrics(event);
+    var sizes = getSizes(metrics, event);
+    out.style.backgroundPosition = sizes;
+  });
+}
+
+function getMetrics(ev) {
+    var x = ev.offsetX;
+    var y = ev.offsetY;
+    return new Array(x, y);
+}
+
+function getSizes(arr, ev) {
+    var el = ev.target.closest('img');
+    if (el) {
+        heigthPercent = arr[1] / (el.clientHeight / 100) ;
+        widthPercent = arr[0] / (el.clientWidth / 100);
+    }
+    return widthPercent + '% ' +  heigthPercent + '%';
+}
+
+
+
+    </script>
+  </body>
+</html>
